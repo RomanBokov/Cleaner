@@ -2,14 +2,11 @@
 
 Установка:
 
-установить python 3 https://www.python.org/downloads/
-
-желательно создать виртуальное окружение https://tyapk.ru/blog/post/python-virtual-environment-windows
-
-установить все необходимые пакеты из файла requirements.txt (команда pip install requirements.txt)
-запустить main.py
-обращаться на ip сервера, на котором развернут, порт 5001
+1. Установить python 3 https://www.python.org/downloads/
+2. Создать виртуальное окружение https://tyapk.ru/blog/post/python-virtual-environment-windows
+3. Установить все необходимые пакеты из файла requirements.txt (команда pip install requirements.txt)
 
 Использование:
-Обращение к метода сервиса (описаны ниже) посредством сообщений, содержащих json.
-В папке SoapIU project содержится проект для SoapUI с примерами.
+
+1. Скопировать содержимое в папку проекта 
+2. "Наслаждаться" (с)
