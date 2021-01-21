@@ -2,7 +2,6 @@
 Модуль содержит класс BasicAdapter.
 
 :author: Andrei Ursaki.
-
 """
 import json
 
@@ -18,7 +17,6 @@ class BasicAdapter:
         :param telemetry_system_id: идентификационный номер телеметрической системы
         :param endpoint: url/endpoint адаптера
         :param content_type: тип данных, используемых в сообщении
-
         """
         self.telemetry_system_id = telemetry_system_id
         self.endpoint = endpoint
@@ -36,7 +34,6 @@ class BasicAdapter:
         :param route: адрес метода проверки
         :param header: заголовки для запроса
         :return: словарь с результатами проверки, см. https://gitlab.sphaera.ru/coordcom/testers-projects/coordcom-card-checker
-
         """
         # добавляем в словарь с проверяемыми значениями информацию об объекте/датчике
         info_dict.update({'telemetry_system_id': self.telemetry_system_id, 'sensor_code': sensor_code})
@@ -56,7 +53,6 @@ class BasicAdapter:
         :param sensor_code: код объекта/датчика
         :param card_info: словарь с проверяемыми значениями
         :return: словарь с результатами проверки
-
         """
         return self.__check_data(sensor_code, card_info, "checkByExternalSystemReference")
 
@@ -68,7 +64,6 @@ class BasicAdapter:
         :param co_info: словарь с проверяемыми значениями
         :param header: заголовки для запроса, нужен для указания базы данных кастомных объектов
         :return: словарь с результатами проверки
-
         """
         return self.__check_data(sensor_code, co_info, "checkCustomObject", header)
 
@@ -78,7 +73,6 @@ class BasicAdapter:
 
         :param state: необходимое состояние объектов/датчиков (0 - все, 1 - с открытыми карточками, 2 - без открытых карточек)
         :return: список объектов/датчиков
-
         """
         sensors = self.sh.get_all_sensor_codes()
         sensors_with_open_card = self.sh.get_all_sensors_with_open_card()
