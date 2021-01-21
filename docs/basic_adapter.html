@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module basic_adapter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>basic_adapter</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Candrei.ursaki%5Cpycharmprojects%5Cbasicadaptertest%5Cbasic_adapter.py">c:\users\andrei.ursaki\pycharmprojects\basicadaptertest\basic_adapter.py</a></font></td></tr></table>
+    <p><tt>Модуль&nbsp;содержит&nbsp;класс&nbsp;<a href="#BasicAdapter">BasicAdapter</a>.<br>
+&nbsp;<br>
+:author:&nbsp;Andrei&nbsp;Ursaki.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="basic_adapter.html#BasicAdapter">BasicAdapter</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BasicAdapter">class <strong>BasicAdapter</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#BasicAdapter">BasicAdapter</a>(telemetry_system_id:&nbsp;int,&nbsp;endpoint:&nbsp;str,&nbsp;content_type:&nbsp;str)<br>
+&nbsp;<br>
+<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BasicAdapter-__init__"><strong>__init__</strong></a>(self, telemetry_system_id: int, endpoint: str, content_type: str)</dt><dd><tt>Конструктор&nbsp;класса.<br>
+&nbsp;<br>
+:param&nbsp;telemetry_system_id:&nbsp;идентификационный&nbsp;номер&nbsp;телеметрической&nbsp;системы<br>
+:param&nbsp;endpoint:&nbsp;url/endpoint&nbsp;адаптера<br>
+:param&nbsp;content_type:&nbsp;тип&nbsp;данных,&nbsp;используемых&nbsp;в&nbsp;сообщении</tt></dd></dl>
+
+<dl><dt><a name="BasicAdapter-check_card"><strong>check_card</strong></a>(self, sensor_code: str, card_info: dict) -&gt; dict</dt><dd><tt>Метод&nbsp;для&nbsp;проверки&nbsp;карточки.<br>
+&nbsp;<br>
+:param&nbsp;sensor_code:&nbsp;код&nbsp;объекта/датчика<br>
+:param&nbsp;card_info:&nbsp;словарь&nbsp;с&nbsp;проверяемыми&nbsp;значениями<br>
+:return:&nbsp;словарь&nbsp;с&nbsp;результатами&nbsp;проверки</tt></dd></dl>
+
+<dl><dt><a name="BasicAdapter-check_co"><strong>check_co</strong></a>(self, sensor_code: str, co_info: dict, header: dict = None) -&gt; dict</dt><dd><tt>Метод&nbsp;для&nbsp;проверки&nbsp;атрибутов&nbsp;кастомного&nbsp;объекта.<br>
+&nbsp;<br>
+:param&nbsp;sensor_code:&nbsp;код&nbsp;объекта/датчика<br>
+:param&nbsp;co_info:&nbsp;словарь&nbsp;с&nbsp;проверяемыми&nbsp;значениями<br>
+:param&nbsp;header:&nbsp;заголовки&nbsp;для&nbsp;запроса,&nbsp;нужен&nbsp;для&nbsp;указания&nbsp;базы&nbsp;данных&nbsp;кастомных&nbsp;объектов<br>
+:return:&nbsp;словарь&nbsp;с&nbsp;результатами&nbsp;проверки</tt></dd></dl>
+
+<dl><dt><a name="BasicAdapter-get_sensors"><strong>get_sensors</strong></a>(self, state: int) -&gt; list</dt><dd><tt>Метод&nbsp;для&nbsp;получения&nbsp;списка&nbsp;объектов/датчиков.<br>
+&nbsp;<br>
+:param&nbsp;state:&nbsp;необходимое&nbsp;состояние&nbsp;объектов/датчиков&nbsp;(0&nbsp;-&nbsp;все,&nbsp;1&nbsp;-&nbsp;с&nbsp;открытыми&nbsp;карточками,&nbsp;2&nbsp;-&nbsp;без&nbsp;открытых&nbsp;карточек)<br>
+:return:&nbsp;список&nbsp;объектов/датчиков</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
