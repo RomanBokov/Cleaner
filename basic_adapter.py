@@ -82,3 +82,12 @@ class BasicAdapter:
             return sensors_with_open_card
         elif state == 2:
             return list(set(sensors) - set(sensors_with_open_card))
+
+    def check_card_for_notification(self, sensor_code):
+        """
+        Метод для проверки напоминаний в КК.
+
+        :param sensor_code: код объекта/датчика
+        :return: True/False
+        """
+        return self.sh.is_notification_in_card(sensor_code)

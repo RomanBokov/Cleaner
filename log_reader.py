@@ -53,10 +53,10 @@ class LogReader:
         try:
             # пытаемся получить данные из пришедшего json'а
             result = json.loads(result)
-            if isinstance(result, dict):
+            if result.get("error"):
                 return [result]
             else:
-                return result
+                return result.get("found_lоgs")
         except json.decoder.JSONDecodeError:
             # если ответ не содержит json возвращаем ошибку
             return [{"error": "Необработанная серверная ошибка"}]
