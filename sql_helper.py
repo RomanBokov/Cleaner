@@ -206,3 +206,14 @@ class SqlHelper(object):
       """
         cursor = self.execute_query(self.omnidata_conn, query)
         return cursor.fetchall()
+
+    def is_notification_in_card(self, sensor_code):
+        query = f"""select * from [OmniData].[dbo].[cse_CaseExternalSystemReference_tab] ces
+                    join [OmniData].[dbo].[cse_TimeActivatedCase_tab] tac on ces.CallCenterId = tac.CallCenterId 
+                    and ces.CaseFolderId = tac.CaseFolderId and ces.CaseFolderId= tac.CaseFolderId
+                    where ces.ExternalSystemReference like '{self.telemetry_system_id}-<{sensor_code}>%'"""
+        cursor = self.execute_query(self.omnidata_conn, query)
+        if cursor.fetchall():
+            return True
+        else:
+            return False
