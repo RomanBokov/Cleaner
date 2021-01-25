@@ -125,11 +125,11 @@ class SqlHelper(object):
         # print(query)
         cursor = self.execute_query(self.omnidata_conn, query)
         columns = [column[0] for column in cursor.description]
-        results = []
+        results = {}
         for row in cursor.fetchall():
             card_dict = dict(zip(columns, row))
             card_dict['Notices'] = self.get_card_notices(card_dict.get('CallCenterId'), card_dict.get('CaseFolderId'))
-            results.append(card_dict)
+            results.update(card_dict)
 
         return results
 
