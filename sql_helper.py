@@ -112,7 +112,7 @@ class SqlHelper(object):
         :param sensor_code: идентификатор объекта
         :return: словарь атрибутов карточки
         """
-        query = f"""SELECT TOP 1000 mun.MunicipalityName, ces.CallCenterId, ces.CaseFolderId, ces.CaseId, cf.CaseTypeId, 
+        query = f"""SELECT TOP 1000 cf.MunicipalityName, ces.CallCenterId, ces.CaseFolderId, ces.CaseId, cf.CaseTypeId, 
                     ces.ExternalSystemName, ces.ExternalSystemReference, cf.Created as CardCreated,
                     cf.XCoordinate,cf.YCoordinate,cf.CaseIndex1,cf.CaseIndex2,cf.CaseIndex3,cf.CaseIndex1Name,cf.CaseIndex2Name,cf.CaseIndex3Name,
                     cf.CaseIndexComment,cf.RouteDirections
