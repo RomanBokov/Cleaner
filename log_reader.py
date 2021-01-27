@@ -26,8 +26,8 @@ class LogReader:
         self.start_dt_iso_str = start_datetime.isoformat(timespec="seconds")
         self.end_dt_iso_str = end_datetime.isoformat(timespec="seconds")
 
-    def __get_logs(self, file_path: str, find_dict: dict, pretty_print: bool = False, log_count: int = None,
-                   full_file_search: bool = False) -> list:
+    def get_logs(self, file_path: str, find_dict: dict, pretty_print: bool = False, log_count: int = None,
+                 full_file_search: bool = False) -> list:
         """
         Метод для получения списка логов.
 
@@ -71,7 +71,7 @@ class LogReader:
         # формируем поисковой запрос
         find_dict = {"sphaera_process": "Sphaera.Telemetry.Cep",
                      "sphaera_data": [{"data": f"<statementName>{rule_name}</statementName>"}]}
-        return self.__get_logs(self.file_path_integration, find_dict, log_count=1)
+        return self.get_logs(self.file_path_integration, find_dict, log_count=1)
 
     def get_chain_logs(self, file_path: str, chain_id: str) -> list:
         """
@@ -83,7 +83,7 @@ class LogReader:
         """
         # формируем поисковой запрос
         find_dict = {"sphaera_x_operation_id": chain_id}
-        return self.__get_logs(file_path, find_dict, full_file_search=True)
+        return self.get_logs(file_path, find_dict, full_file_search=True)
 
     @allure.step("Получение цепочки логов для правила {1}")
     def get_chain_for_rule(self, rule_name: str) -> list:
@@ -116,7 +116,7 @@ class LogReader:
         """
         # формируем поисковой запрос
         find_dict = {"sphaera_operation": "CreateOrUpdateElement", "sphaera_data": [{"data": layer_obj_id}]}
-        return self.__get_logs(self.file_path_layer_object, find_dict, log_count=1)
+        return self.get_logs(self.file_path_layer_object, find_dict, log_count=1)
 
     @allure.step("Получение логов для кастомного объекта с id {1}")
     def get_chain_for_layer_object(self, layer_obj_id):
