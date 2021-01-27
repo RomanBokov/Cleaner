@@ -80,7 +80,7 @@ class SqlHelper(object):
         """
         sensor_attribute_dict = {}
         query = f"""SELECT TOP 1000  a.Code,av.Value,
-                    t_s.layerobject_caption as caption,t_s.address, t_s.location_lat, t_s.location_long,
+                    t_s.layerobject_caption as caption,t_s.address as t_address, t_s.location_lat, t_s.location_long,
                     t_s.call_center_id,t_s.case_type_area,e.id
                     FROM [LayerObjectRostov].[dbo].[Element] e
                     join ElementType et on e.ElementTypeId = et.Id 
