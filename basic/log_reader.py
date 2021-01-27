@@ -8,7 +8,7 @@ from datetime import datetime
 
 import allure
 
-from request import Request
+from basic.request import Request
 
 
 class LogReader:

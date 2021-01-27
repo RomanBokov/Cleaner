@@ -7,7 +7,7 @@ import re
 
 import pyodbc
 
-import db_config
+from basic import db_config
 
 
 class SqlHelper(object):

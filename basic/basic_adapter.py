@@ -5,8 +5,8 @@
 """
 import json
 
-from request import Request
-from sql_helper import SqlHelper
+from basic.request import Request
+from basic.sql_helper import SqlHelper
 
 
 class BasicAdapter:
