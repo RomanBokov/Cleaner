@@ -49,7 +49,8 @@ class SqlHelper(object):
         sensor_code_list = []
         query = f"""SELECT sensor_code      
                     FROM [SphaeraTelemetryReference02].[dbo].[t_sensor]
-                    where telemetry_system_id = {self.telemetry_system_id} and sensor_code != 'SensorCodeDefault'"""
+                    where telemetry_system_id = {self.telemetry_system_id} and sensor_code != 'SensorCodeDefault' 
+                    and removed_dt is NULL """
         # print(query)
         cursor = self.execute_query(self.sensors_conn, query)
         for row in cursor.fetchall():
