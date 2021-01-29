@@ -146,22 +146,6 @@ class SqlHelper(object):
             results.append(dict(zip(columns, row)))
         return results
 
-    def get_sensor_extension(self):
-        """
-        Метод для получения информации об объекте из xml файла.
-
-        :return: список словарей с информацией о зонах для всех объектов
-        """
-        query = f"""select sensor_code,data from [SphaeraTelemetryReference02].[dbo].[t_sensor_extension]
-                        where telemetry_system_id = {self.telemetry_system_id} and sensor_code != 'SensorCodeDefault'"""
-        cursor = self.execute_query(self.layer_obj_conn, query)
-        extension_list = []
-        for row in cursor.fetchall():
-            ext_dict = self.extension_to_dict(row[0], row[1])
-            if ext_dict:
-                extension_list.append(ext_dict.copy())
-        return extension_list
-
     def delete_notify(self, param_list):
         """
         Метод для удаления напоминаний для карточек.
@@ -179,7 +163,7 @@ class SqlHelper(object):
 
     def change_index_to_test(self, param_list):
         """
-        Метод для изменения индексов 1 уровня на 64, второео 4.
+        Метод для изменения индексов 1 уровня на 64.
 
         :param param_list: список с информацией о карточке
         """
@@ -187,7 +171,8 @@ class SqlHelper(object):
         case_folder_id = param_list[1]
         case_id = param_list[2]
         case_type_id = param_list[3]
-        query = f"""update [OmniData].[dbo].[cse_Case_tab] set CaseIndex1=64,CaseIndex2=9,CaseIndex3=NULL 
+        query = f"""update [OmniData].[dbo].[cse_Case_tab] set CaseIndex1=64,CaseIndex2=NULL,CaseIndex3=NULL
+                    ,CaseIndex1Name='Тестирование Системы',CaseIndex2Name=NULL,CaseIndex3Name=NULL
                     where CallCenterId={call_center_id} and CaseFolderId={case_folder_id} and CaseId = {case_id}
                     and CaseTypeId={case_type_id}"""
         print(query)
@@ -197,14 +182,13 @@ class SqlHelper(object):
         # query = """select CallCenterId,CaseFolderId,CaseId from cse_Case_tab
         #         where CallCenterId = 160 and Created > '2020-09-28'
         #         order by created desc"""
-        query = """
-            SELECT TOP 1000 --mun.MunicipalityName, 
-    ces.CallCenterId, cf.CaseFolderId, cf.CaseId,cf.CaseTypeId
-      FROM [OmniData].[dbo].[cse_Case_tab] cf
-      join [OmniData].[dbo].[cse_CaseExternalSystemReference_tab] ces on cf.CallCenterId = ces.CallCenterId and cf.CaseFolderId = ces.CaseFolderId
-      where ces.ExternalSystemReference like '30-%'
-      order by cf.Created desc
-      """
+        query = f""" SELECT TOP 1000 ces.CallCenterId, cf.CaseFolderId, cf.CaseId,cf.CaseTypeId
+                FROM [OmniData].[dbo].[cse_Case_tab] cf
+                join [OmniData].[dbo].[cse_CaseExternalSystemReference_tab] ces on cf.CallCenterId = ces.CallCenterId 
+                and cf.CaseFolderId = ces.CaseFolderId
+                where ces.ExternalSystemReference like '{self.telemetry_system_id}-%'
+                order by cf.Created desc
+                """
         cursor = self.execute_query(self.omnidata_conn, query)
         return cursor.fetchall()
 
