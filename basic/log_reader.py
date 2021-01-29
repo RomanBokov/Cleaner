@@ -8,6 +8,7 @@ from datetime import datetime
 
 import allure
 
+from basic.config import Config
 from basic.request import Request
 
 
@@ -21,8 +22,8 @@ class LogReader:
         :param start_datetime: дата-время для начала поиска в логах
         :param end_datetime: дата-время для окончания поиска в логах
         """
-        self.file_path_integration = fr"\\{server}\d$\Logs\Integration\Integration.log"
-        self.file_path_layer_object = fr"\\{server}\d$\Logs\LayerObjectsRabbit\Integration.log"
+        self.file_path_integration = fr"\\{server}{Config.integration_logs_path}"
+        self.file_path_layer_object = fr"\\{server}{Config.layer_objects_logs_path}"
         self.start_dt_iso_str = start_datetime.isoformat(timespec="seconds")
         self.end_dt_iso_str = end_datetime.isoformat(timespec="seconds")
 

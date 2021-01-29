@@ -1,3 +1,5 @@
 class Config:
-    # logs_folder_path = r"\\10.100.42.5\d$\Logs\Integration\Integration.log"
-    logs_folder_path = r"C:\Users\andrei.ursaki\Documents\temp\logs_examples\Integration1.log"
+    # путь к логам Integration
+    integration_logs_path = r"\d$\Logs\Integration\Integration.log"
+    # путь к логам КО
+    layer_objects_logs_path = r"\d$\Logs\LayerObjectsRabbit\Integration.log"
