@@ -13,6 +13,7 @@ db_sensors = 'DATABASE=SphaeraTelemetryReference02'
 db_omnidata = 'DATABASE=OmniData'
 user = 'UID=sa'
 pw = 'PWD=Sph@era92'
+
 db_layer_obj_conn_42 = ';'.join([driver, server_layerobj_42, port, db_layer_obj, user, pw])
 db_sensors_conn_42 = ';'.join([driver, server_layerobj_42, port, db_sensors, user, pw])
 
