@@ -25,13 +25,13 @@ class Request:
             print(input_msg)
         return response.text
 
-    def send(self, input_msg, print_msg=False, oko_url=None):
+    def send(self, input_msg, print_msg=False, header=None):
         msg = input_msg.encode('utf-8')
         session = requests.session()
         session.headers = {"Content-Type": f"{self.content_type}; charset=utf-8"}
         session.headers.update({"Content-Length": str(len(msg))})
-        if oko_url:
-            session.headers.update({'OkoSystemUrl': oko_url})
+        if header:
+            session.headers.update(header)
         response = session.post(url=self.endpoint, data=msg)
         print("\n", datetime.now(), f'Message sent to {self.endpoint}')
         if print_msg:
