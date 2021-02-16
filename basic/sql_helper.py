@@ -175,13 +175,12 @@ class SqlHelper(object):
                     ,CaseIndex1Name='Тестирование Системы',CaseIndex2Name=NULL,CaseIndex3Name=NULL
                     where CallCenterId={call_center_id} and CaseFolderId={case_folder_id} and CaseId = {case_id}
                     and CaseTypeId={case_type_id}"""
-        print(query)
+        # print(query)
         cursor = self.execute_query(self.omnidata_conn, query, is_commit_needed=True)
 
     def get_card_for_close(self, telemetry_system_id):
         query = f"""
-            SELECT TOP 1000 --mun.MunicipalityName, 
-    ces.CallCenterId, cf.CaseFolderId, cf.CaseId,cf.CaseTypeId
+            SELECT ces.CallCenterId, cf.CaseFolderId, cf.CaseId,cf.CaseTypeId
       FROM [OmniData].[dbo].[cse_Case_tab] cf
       join [OmniData].[dbo].[cse_CaseExternalSystemReference_tab] ces on cf.CallCenterId = ces.CallCenterId and cf.CaseFolderId = ces.CaseFolderId
       where ces.ExternalSystemReference like '{telemetry_system_id}-%'
