@@ -146,35 +146,27 @@ class SqlHelper(object):
             results.append(dict(zip(columns, row)))
         return results
 
-    def delete_notify(self, param_list):
+    def delete_notify(self, card_list):
         """
         Метод для удаления напоминаний для карточек.
 
-        :param param_list: список с информацией о карточке
+        :param card_list: список карточек
         """
-        call_center_id = param_list[0]
-        case_folder_id = param_list[1]
-        case_id = param_list[2]
-        case_type_id = param_list[3]
+        card_list_str = ','.join([f"'{card}'" for card in card_list])
         query = f"""delete from [OmniData].[dbo].[cse_TimeActivatedCase_tab]
-                    where CallCenterId={call_center_id} and CaseFolderId={case_folder_id} and CaseId = {case_id}
-                    and CaseTypeId={case_type_id}"""
+                          where  CONCAT(CallCenterId, '|', CaseFolderId, '|', CaseId) in ({card_list_str})"""
         cursor = self.execute_query(self.omnidata_conn, query, is_commit_needed=True)
 
-    def change_index_to_test(self, param_list):
+    def change_index_to_test(self, card_list):
         """
-        Метод для изменения индексов 1 уровня на 64.
+        Метод для изменения индексов 1 уровня на 64 "Тестирование Системы".
 
-        :param param_list: список с информацией о карточке
+        :param card_list: список карточек
         """
-        call_center_id = param_list[0]
-        case_folder_id = param_list[1]
-        case_id = param_list[2]
-        case_type_id = param_list[3]
-        query = f"""update [OmniData].[dbo].[cse_Case_tab] set CaseIndex1=64,CaseIndex2=NULL,CaseIndex3=NULL
-                    ,CaseIndex1Name='Тестирование Системы',CaseIndex2Name=NULL,CaseIndex3Name=NULL
-                    where CallCenterId={call_center_id} and CaseFolderId={case_folder_id} and CaseId = {case_id}
-                    and CaseTypeId={case_type_id}"""
+        card_list_str = ','.join([f"'{card}'" for card in card_list])
+        query = f"""update [OmniData].[dbo].[cse_Case_tab] set CaseIndex1=64,CaseIndex2=NULL,CaseIndex3=NULL,
+                       CaseIndex1Name='Тестирование Системы',CaseIndex2Name=NULL,CaseIndex3Name=NULL
+                       where  CONCAT(CallCenterId, '|', CaseFolderId, '|', CaseId) in ({card_list_str})"""
         # print(query)
         cursor = self.execute_query(self.omnidata_conn, query, is_commit_needed=True)
 
