@@ -178,17 +178,15 @@ class SqlHelper(object):
         print(query)
         cursor = self.execute_query(self.omnidata_conn, query, is_commit_needed=True)
 
-    def get_card_for_close(self):
-        # query = """select CallCenterId,CaseFolderId,CaseId from cse_Case_tab
-        #         where CallCenterId = 160 and Created > '2020-09-28'
-        #         order by created desc"""
-        query = f""" SELECT TOP 1000 ces.CallCenterId, cf.CaseFolderId, cf.CaseId,cf.CaseTypeId
-                FROM [OmniData].[dbo].[cse_Case_tab] cf
-                join [OmniData].[dbo].[cse_CaseExternalSystemReference_tab] ces on cf.CallCenterId = ces.CallCenterId 
-                and cf.CaseFolderId = ces.CaseFolderId
-                where ces.ExternalSystemReference like '{self.telemetry_system_id}-%'
-                order by cf.Created desc
-                """
+    def get_card_for_close(self, telemetry_system_id):
+        query = f"""
+            SELECT TOP 1000 --mun.MunicipalityName, 
+    ces.CallCenterId, cf.CaseFolderId, cf.CaseId,cf.CaseTypeId
+      FROM [OmniData].[dbo].[cse_Case_tab] cf
+      join [OmniData].[dbo].[cse_CaseExternalSystemReference_tab] ces on cf.CallCenterId = ces.CallCenterId and cf.CaseFolderId = ces.CaseFolderId
+      where ces.ExternalSystemReference like '{telemetry_system_id}-%'
+      order by cf.Created desc
+      """
         cursor = self.execute_query(self.omnidata_conn, query)
         return cursor.fetchall()
 
